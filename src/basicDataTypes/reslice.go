@@ -26,4 +26,6 @@ func main() {
 		fmt.Print("index ", i, " value ", value, " ")
 	}
 	fmt.Println()
+
+	fmt.Println("length: ", len(integer), " capacity ", cap(integer))
 }
