@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"math"
-	"myInterface"
+
+	"github.com/leonelcs/golangprogramming/myinterface"
 )
 
 type square struct {
@@ -12,6 +13,11 @@ type square struct {
 
 type circle struct {
 	R float64
+}
+
+type retangle struct {
+	H float64
+	W float64
 }
 
 func (s square) Area() float64 {
@@ -30,16 +36,25 @@ func (c circle) Perimeter() float64 {
 	return 2 * c.R * math.Pi
 }
 
-//Calculate Area and Perimeter of Shape
-func Calculate(x myInterface.Shape) {
-	_, ok := x.(circle)
-	if ok {
-		fmt.Println("Is a circle!")
-	}
+func (r retangle) Area() float64 {
+	return r.H * r.W
+}
 
-	v, ok := x.(square)
-	if ok {
-		fmt.Println("Is a square:", v)
+func (r retangle) Perimeter() float64 {
+	return (2 * r.H) + (2 * r.W)
+}
+
+//Calculate Area and Perimeter of Shape
+func Calculate(x myinterface.Shape) {
+	switch v := x.(type) {
+	case square:
+		fmt.Println("This is a square!")
+	case circle:
+		fmt.Println("This is a circle!", v)
+	case retangle:
+		fmt.Println("This a retangle!")
+	default:
+		fmt.Printf("Unknown type %T!\n", v)
 	}
 
 	fmt.Println(x.Area())

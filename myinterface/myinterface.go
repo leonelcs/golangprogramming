@@ -1,4 +1,4 @@
-package myInterface
+package myinterface
 
 type Shape interface {
 	Area() float64
